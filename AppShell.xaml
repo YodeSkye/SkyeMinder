@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SkyeMinder.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:main="clr-namespace:SkyeMinder"
+    xmlns:pages="clr-namespace:SkyeMinder.Pages"
+    xmlns:services="clr-namespace:SkyeMinder.Services"
+    Shell.FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeader>
+        <StackLayout Padding="20" BackgroundColor="#F37F17">
+            <Label Text="Skye Minder" FontSize="24" FontAttributes="Bold" />
+            <Label Text="{x:Static services:AppInfoHelper.FullVersion}" FontSize="14" />
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Home" Icon="home.png">
+        <ShellContent ContentTemplate="{DataTemplate main:MainPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Reminders" Icon="bell.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:ReminderSettings}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Log" Icon="log.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Log}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Import" Icon="import16.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Import}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Export" Icon="export.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Export}" />
+    </FlyoutItem>
+    
+</Shell>

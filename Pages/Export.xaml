@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SkyeMinder.Pages.Export"
+             Title="Export">
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <!-- Format Picker -->
+        <Label Text="Export Format" />
+        <Picker x:Name="FormatPicker" Margin="0,-20,0,0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>CSV</x:String>
+                    <x:String>PDF</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+            <Picker.SelectedIndex>0</Picker.SelectedIndex>
+        </Picker>
+
+        <Label Text="Date Range" Margin="0,20,0,0"/>
+        <Picker x:Name="DateRangePicker" Margin="0,-20,0,0" SelectedIndex="0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>All Entries</x:String>
+                    <x:String>Last Week</x:String>
+                    <x:String>Last Month</x:String>
+                    <x:String>Last 3 Months</x:String>
+                    <x:String>Last 6 Months</x:String>
+                    <x:String>Last Year</x:String>
+                    <x:String>Custom Range</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <!-- Date Range -->
+        <StackLayout x:Name="DateRangePanel" Spacing="-10">
+            <Label Text="Start Date" Margin="0,-10,0,0"/>
+            <DatePicker x:Name="StartDatePicker" />
+            <Label Text="End Date" Margin="0,10,0,0"/>
+            <DatePicker x:Name="EndDatePicker" />
+        </StackLayout>
+
+        <!-- Summary Toggle -->
+        <Label Text="Include Summary (Average, Min/Max)" Margin="0,20,0,0"/>
+        <CheckBox x:Name="IncludeSummaryCheckBox" Margin="0,-20,0,0" HorizontalOptions="Start" IsChecked="True" />
+
+        <!-- Count Label -->
+        <Label x:Name="EntryCountLabel" Margin="0,20,0,0" Text="Included Log Entries: 0" FontAttributes="Italic" TextColor="DarkGray" />
+
+        <!-- Export Button -->
+        <Button Text="Export" Padding ="20" Margin="0,40,0,0" Clicked="OnExportClicked" />
+
+        <!-- Share Button -->
+        <Button x:Name="ShareButton" Padding="20" Margin="0,20,0,0" Text="Share Exported File" Clicked="OnShareClicked" IsEnabled="False" />
+        
+    </VerticalStackLayout>
+</ContentPage>

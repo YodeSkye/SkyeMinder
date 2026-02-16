@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SkyeMinder.Models"
+             xmlns:local="clr-namespace:SkyeMinder"
+             x:Class="SkyeMinder.MainPage"
+             x:DataType="local:MainPage">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <VerticalStackLayout Padding="15" Spacing="5">
+            <Label Text="Enter Blood Sugar" FontSize="24" />
+
+            <Entry x:Name="valueEntry" Placeholder="Blood sugar value (mg/dL)" Keyboard="Numeric" FontSize="20" />
+            <Editor x:Name="notesEditor" Placeholder="Notes (optional)" HeightRequest="100" />
+
+            <Button Text="Save Entry" Padding="20" Margin="0,20,0,0" Clicked="OnSaveClicked" />
+
+            <Label Text="Log:" FontSize="20" Margin="0,20,0,0" />
+        </VerticalStackLayout>
+        <CollectionView x:Name="logView"
+                        ItemsSource="{Binding Entries}"
+                        Grid.Row="1"
+                        Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:BloodSugarEntry">
+                    <Grid Padding="5" ColumnDefinitions="*,Auto,10,Auto">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="{Binding Timestamp, StringFormat='{0:MMM d, yyyy h:mm tt}'}" FontSize="12" />
+                            <Label Text="{Binding Value}" FontSize="18" FontAttributes="Bold" />
+                            <Label Text="{Binding Notes}" FontSize="14" />
+                        </VerticalStackLayout>
+
+                        <Button Text="Edit"
+                            Grid.Column="1"
+                            Clicked="OnEditClicked"
+                            CommandParameter="{Binding .}" />
+
+                        <!-- Spacer: empty column at Grid.Column="2" -->
+
+                        <Button Text="Delete"
+                            Grid.Column="3"
+                            Clicked="OnDeleteClicked"
+                            CommandParameter="{Binding .}"
+                            TextColor="White"
+                            BackgroundColor="Red" />
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
