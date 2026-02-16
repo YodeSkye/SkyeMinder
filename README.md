@@ -15,6 +15,6 @@ Skye's Blood Sugar Tracker for Android, v1.0 build 9
     Charting and data visualization
 
 ### Requirements
-    - Visual Studio 2022 (17.8 or later) or 2026
-    - .NET 10 SDK
-    - .NET MAUI workload installed
+- Visual Studio 2022 (17.8 or later) or 2026
+- .NET 10 SDK
+- .NET MAUI workload installed
