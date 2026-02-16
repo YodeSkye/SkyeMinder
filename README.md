@@ -1,1 +1,16 @@
-# SkyeMinder
+## SkyeMinder
+Skye's Blood Sugar Tracker for Android, v1.0 build 9
+
+# What's New
+    First public release of Skye Minder
+    Track blood sugar entries
+    Edit, delete, and view history
+    Reminders
+    Import/Export CSV
+    Export PDF
+    Safe confirmation dialogs
+
+# Future Plans
+    Add High/Low tracking support
+    Charting and data visualization
+
