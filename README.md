@@ -8,10 +8,10 @@ Skye's Blood Sugar Tracker for Android, v1.0 build 9
     Reminders
     Import/Export CSV
     Export PDF
+    Settings for High/Low thresholds
     Safe confirmation dialogs
 
 ## Future Plans
-    Add High/Low tracking support
     Charting and data visualization
 
 ### Development Requirements
