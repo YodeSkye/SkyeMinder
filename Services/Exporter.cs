@@ -53,14 +53,25 @@ namespace SkyeMinder.Services
             graphics.DrawString("Notes", font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(125, y));
             y += 20;
 
+            int lowThreshold = UserSettings.LowThreshold;
+            int highThreshold = UserSettings.HighThreshold;
+
             foreach (var entry in entries)
             {
-                //var line = $"{entry.Timestamp.ToShortDateString()}\t\t{entry.Value}\t\t{entry.Notes}";
-                //graphics.DrawString(line, font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y));
-                graphics.DrawString(entry.Timestamp.ToShortDateString(), font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y));
-                graphics.DrawString(entry.Value.ToString(), font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(75, y));
-                graphics.DrawString(entry.Notes ?? "", font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(125, y));
+                PdfBrush brush;
+                if (entry.Value < lowThreshold)
+                    brush = PdfBrushes.Orange;
+                else if (entry.Value > highThreshold)
+                    brush = PdfBrushes.Red;
+                else
+                    brush = PdfBrushes.Black;
+
+                graphics.DrawString(entry.Timestamp.ToShortDateString(), font, brush, new Syncfusion.Drawing.PointF(0, y));
+                graphics.DrawString(entry.Value.ToString(), font, brush, new Syncfusion.Drawing.PointF(75, y));
+                graphics.DrawString(entry.Notes ?? "", font, brush, new Syncfusion.Drawing.PointF(125, y));
+
                 y += 20;
+                (page, graphics, y) = EnsureSpace(document, page, y);
             }
 
             if (includeSummary)
@@ -72,18 +83,38 @@ namespace SkyeMinder.Services
                 var firstDate = entries.Min(e => e.Timestamp).ToShortDateString();
                 var lastDate = entries.Max(e => e.Timestamp).ToShortDateString();
                 y += 20;
+                (page, graphics, y) = EnsureSpace(document, page, y);
                 graphics.DrawString("Summary", new PdfStandardFont(PdfFontFamily.Helvetica, 14, PdfFontStyle.Bold), PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y));
                 y += 20;
+                (page, graphics, y) = EnsureSpace(document, page, y);
                 graphics.DrawString($"Date Range: {firstDate} to {lastDate}", font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y)); y += 20;
+                (page, graphics, y) = EnsureSpace(document, page, y);
                 graphics.DrawString($"Total Entries: {total}", font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y)); y += 20;
+                (page, graphics, y) = EnsureSpace(document, page, y);
                 graphics.DrawString($"Average Value: {average:F1}", font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y)); y += 20;
+                (page, graphics, y) = EnsureSpace(document, page, y);
                 graphics.DrawString($"Min Value: {min}", font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y)); y += 20;
+                (page, graphics, y) = EnsureSpace(document, page, y);
                 graphics.DrawString($"Max Value: {max}", font, PdfBrushes.Black, new Syncfusion.Drawing.PointF(0, y));
             }
 
             using var stream = new MemoryStream();
             document.Save(stream);
             return stream.ToArray();
+        }
+        private static (PdfPage page, PdfGraphics graphics, float y) EnsureSpace(PdfDocument doc, PdfPage page, float y)
+        {
+            float limit = page.GetClientSize().Height - 40;
+
+            if (y > limit)
+            {
+                page = doc.Pages.Add();
+                var graphics = page.Graphics;
+                y = 0;
+                return (page, graphics, y);
+            }
+
+            return (page, page.Graphics, y);
         }
     }
 }
