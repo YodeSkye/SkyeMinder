@@ -15,7 +15,10 @@
                 <Border Padding="10" Margin="5" BackgroundColor="LightGray">
                     <VerticalStackLayout>
                         <Label Text="{Binding Timestamp, StringFormat='{0:MMM d, yyyy h:mm tt}'}" FontSize="12" />
-                        <Label Text="{Binding Value}" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="{Binding Value}"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="{Binding Value, Converter={StaticResource ThresholdColorConverter}}" />
                         <Label Text="{Binding Notes}" FontSize="14" />
                     </VerticalStackLayout>
                 </Border>

@@ -1,4 +1,5 @@
-﻿using Android.Widget;
+﻿
+using Android.Widget;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 
@@ -10,7 +11,7 @@ namespace SkyeMinder
         {
             var builder = MauiApp.CreateBuilder();
         
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JFaF5cXGtCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXZfcXRdRGVfVkxzWUNWYEg=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JGaF5cXGpCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdlWX1ceHVURGVZVEd0VkFWYEs=");
        
             builder
                 .UseMauiApp<App>()

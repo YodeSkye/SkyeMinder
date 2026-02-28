@@ -34,5 +34,8 @@
     <FlyoutItem Title="Export" Icon="export.png">
         <ShellContent ContentTemplate="{DataTemplate pages:Export}" />
     </FlyoutItem>
-    
+
+    <FlyoutItem Title="Settings" Icon="settings.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Settings}" />
+    </FlyoutItem>
 </Shell>
