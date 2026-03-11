@@ -10,6 +10,7 @@ namespace SkyeMinder
             InitializeComponent();
             Routing.RegisterRoute("MainPage", typeof(MainPage));
             Routing.RegisterRoute(nameof(Settings), typeof(Settings));
+            Routing.RegisterRoute(nameof(About), typeof(About));
         }
     }
 }

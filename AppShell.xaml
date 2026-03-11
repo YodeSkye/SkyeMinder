@@ -38,4 +38,8 @@
     <FlyoutItem Title="Settings" Icon="settings.png">
         <ShellContent ContentTemplate="{DataTemplate pages:Settings}" />
     </FlyoutItem>
+    
+    <FlyoutItem Title="About" Icon="About.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:About}" />
+    </FlyoutItem>
 </Shell>
