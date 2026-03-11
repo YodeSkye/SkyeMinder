@@ -3,10 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SkyeMinder.Pages.About"
              Title="About">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Padding="20" Spacing="12">
+
+        <!-- App Identity -->
+        <Label Text="Skye Minder"
+           FontSize="24"
+           FontAttributes="Bold"
+           HorizontalOptions="Center" />
+
+        <!-- Changelog -->
+        <Label Text="Changelog"
+       FontSize="18"
+       FontAttributes="Bold"
+       Margin="0,20,0,0" />
+
+        <ScrollView>
+            <VerticalStackLayout>
+                <Label FontSize="14"
+               LineBreakMode="WordWrap">
+                    <Label.Text>
+                        Skye Minder - Change Log
+                ========================
+
+                Version 1.0.0 - First Public Release
+                Build 9
+
+                Features:
+                - Track blood sugar entries
+                - Edit, delete, and view history
+                - Reminders
+                - Import and export CSV
+                - Export PDF
+                - Settings for high and low thresholds
+                - Safe confirmation dialogs
+                    </Label.Text>
+                </Label>
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Credits -->
+        <Label Text="Credits"
+           FontSize="18"
+           FontAttributes="Bold"
+           Margin="0,20,0,0" />
+
+        <Label Text="Created by Chris"
+           FontSize="14" />
+
+        <Label Text="Built with .NET MAUI, SQLite, CommunityToolkit.Maui"
+           FontSize="14" />
+
+        <Label Text="Licensed under GPL‑3"
+           FontSize="14" />
+
     </VerticalStackLayout>
 </ContentPage>

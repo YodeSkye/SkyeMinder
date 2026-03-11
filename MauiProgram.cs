@@ -1,7 +1,5 @@
 ﻿
-using Android.Widget;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Handlers;
 
 namespace SkyeMinder
 {
