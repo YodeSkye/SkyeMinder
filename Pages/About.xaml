@@ -11,31 +11,82 @@
            FontAttributes="Bold"
            HorizontalOptions="Center" />
 
+        <Label FontSize="14"
+       HorizontalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="v" />
+                    <Span Text="{Binding AppVersion}" />
+                    <Span Text=" (Build " />
+                    <Span Text="{Binding BuildNumber}" />
+                    <Span Text=") Built on " />
+                    <Span Text="{Binding BuildDate}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label Text="Home Page"
+           TextColor="DodgerBlue"
+           TextDecorations="Underline"
+           FontSize="14"
+           HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenHomepageCommand}" />
+                </Label.GestureRecognizers>
+        </Label>
+        
+        <Label Text="Support Development"
+           FontSize="18"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           Margin="0,20,0,0" />
+
+        <VerticalStackLayout Spacing="4">
+
+            <!-- GitHub Sponsors -->
+            <Label Text="GitHub Sponsors"
+               TextColor="DodgerBlue"
+               TextDecorations="Underline"
+               FontSize="14"
+               HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenGitHubDonateCommand}" />
+                    </Label.GestureRecognizers>
+            </Label>
+
+            <!-- PayPal -->
+            <Label Text="Donate via PayPal"
+               TextColor="DodgerBlue"
+               TextDecorations="Underline"
+               FontSize="14"
+               HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenPayPalDonateCommand}" />
+                    </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+        
         <!-- Changelog -->
-        <Label Text="Changelog"
+        <Label Text="Change Log"
        FontSize="18"
        FontAttributes="Bold"
-       Margin="0,20,0,0" />
+       Margin="0,75,0,0" />
 
         <ScrollView>
             <VerticalStackLayout>
                 <Label FontSize="14"
                LineBreakMode="WordWrap">
                     <Label.Text>
-                        Skye Minder - Change Log
-                ========================
-
-                Version 1.0.0 - First Public Release
-                Build 9
-
-                Features:
-                - Track blood sugar entries
-                - Edit, delete, and view history
-                - Reminders
-                - Import and export CSV
-                - Export PDF
-                - Settings for high and low thresholds
-                - Safe confirmation dialogs
+Version 1.0.0 Build 9 - First Public Release
+Features:
+- Track blood sugar entries
+- Edit, delete, and view history
+- Reminders
+- Import and export CSV
+- Export PDF
+- Settings for high and low thresholds
+- Safe confirmation dialogs
                     </Label.Text>
                 </Label>
             </VerticalStackLayout>
@@ -47,10 +98,10 @@
            FontAttributes="Bold"
            Margin="0,20,0,0" />
 
-        <Label Text="Created by Chris"
+        <Label Text="Created by Skye"
            FontSize="14" />
 
-        <Label Text="Built with .NET MAUI, SQLite, CommunityToolkit.Maui"
+        <Label Text="Built with .NET MAUI, SQLite, Syncfusion PDF"
            FontSize="14" />
 
         <Label Text="Licensed under GPL‑3"
