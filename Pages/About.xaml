@@ -80,7 +80,7 @@
                 <Label FontSize="14"
                LineBreakMode="WordWrap">
                     <Label.Text>
-Version 1.0 Build 12 - First Public Release
+Version 1.0 Build 13 - First Public Release
 Features:
 - Track blood sugar entries
 - Edit, delete, and view history
@@ -109,5 +109,16 @@ Features:
         <Label Text="Licensed under GPL‑3"
            FontSize="14" />
 
+        <Label Text="Privacy Policy"
+           TextColor="DodgerBlue"
+           TextDecorations="Underline"
+           FontSize="14"
+           Margin="0,40,0,0"
+           HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenPrivacyPolicyCommand}" />
+                </Label.GestureRecognizers>
+        </Label>
+        
     </VerticalStackLayout>
 </ContentPage>

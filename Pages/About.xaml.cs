@@ -30,6 +30,7 @@ public partial class About : ContentPage
     public ICommand OpenHomepageCommand { get; }
     public ICommand OpenGitHubDonateCommand { get; }
     public ICommand OpenPayPalDonateCommand { get; }
+    public ICommand OpenPrivacyPolicyCommand { get; }
 #pragma warning restore CA1822
 
     public About()
@@ -42,6 +43,8 @@ public partial class About : ContentPage
             await Launcher.OpenAsync("https://github.com/sponsors/YodeSkye"));
         OpenPayPalDonateCommand = new Command(async () =>
             await Launcher.OpenAsync("https://www.paypal.com/donate/?hosted_button_id=RVH5T9H69G6CS"));
+        OpenPrivacyPolicyCommand = new Command(async () =>
+            await Launcher.OpenAsync("https://gist.github.com/YodeSkye/86f0e97076b9662e3f263a1db94e82de"));
 
         BindingContext = this;
     }
