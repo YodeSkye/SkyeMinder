@@ -80,7 +80,7 @@
                 <Label FontSize="14"
                LineBreakMode="WordWrap">
                     <Label.Text>
-Version 1.0 Build 11 - First Public Release
+Version 1.0 Build 12 - First Public Release
 Features:
 - Track blood sugar entries
 - Edit, delete, and view history
