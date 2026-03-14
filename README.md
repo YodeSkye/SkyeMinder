@@ -18,7 +18,7 @@ Skye's Blood Sugar Tracker for Android, v1.0 build 9
 Found a bug or have a feature request?  
 [Open an issue on GitHub](https://github.com/YodeSkye/SkyeMinder/issues).
 
-### Development Requirements
+## Development Requirements
 - Visual Studio 2022 (17.8 or later) or 2026
 - .NET 10 SDK
 - .NET MAUI workload installed
