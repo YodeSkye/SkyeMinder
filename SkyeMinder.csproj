@@ -127,4 +127,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Screenshots\" />
+	</ItemGroup>
+
 </Project>
