@@ -24,5 +24,11 @@
                    TextChanged="OnHighChanged" />
         </HorizontalStackLayout>
 
+        <Button Text="Debug Reminder Status"
+            Clicked="OnDebugReminderStatusClicked"
+            BackgroundColor="#333"
+            TextColor="White"
+            Margin="0,10,0,0" />
+        
     </VerticalStackLayout>
 </ContentPage>

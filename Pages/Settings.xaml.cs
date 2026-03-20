@@ -31,5 +31,19 @@ namespace SkyeMinder.Pages
             if (int.TryParse(e.NewTextValue, out int high))
                 UserSettings.HighThreshold = high;
         }
+        [global::System.Runtime.Versioning.SupportedOSPlatform("android30.0")]
+        private async void OnDebugReminderStatusClicked(object sender, EventArgs e)
+        {
+            // Call your shared logic
+            var batteryOk = ReminderReliability.IsBatteryOptimizationIgnored();
+            var autoRevokeEnabled = ReminderReliability.IsAutoRevokeEnabled();
+
+            // Build a clean message
+            var msg =
+                $"Battery Optimization Ignored: {batteryOk}\n" +
+                $"Auto‑Revoke Enabled: {autoRevokeEnabled}";
+
+            await DisplayAlertAsync("Reminder Debug", msg, "OK");
+        }
     }
 }
