@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SkyeMinder.Pages.GuidePage"
+    Title="Make Reminders Reliable"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="24">
+
+            <!-- Intro -->
+            <Label Text="These steps help your phone keep Skye Minder active so reminders fire on time."
+                   FontSize="Medium"
+                   TextColor="{DynamicResource SecondaryTextColor}" />
+
+            <!-- REQUIRED SECTION -->
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Keep Skye Minder Active"
+                       FontAttributes="Bold"
+                       FontSize="18" />
+
+                <Label Text="Android may pause apps in the background to save battery. Turning off battery optimization ensures reminders fire exactly when they should."
+                       TextColor="{DynamicResource SecondaryTextColor}" />
+
+                <Button Text="Open Battery Optimization Settings"
+                        Clicked="OnOpenBatteryOptimizationClicked"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+
+                <!-- Status indicator -->
+                <Label x:Name="BatteryStatusLabel"
+                       Text="Checking status..."
+                       TextColor="{DynamicResource SecondaryTextColor}"
+                       FontSize="Small" />
+
+                <!-- Expandable explanation -->
+                <toolkit:Expander>
+                    <toolkit:Expander.Header>
+                        <Label Text="Why this matters"
+                               TextColor="{DynamicResource AccentColor}" />
+                    </toolkit:Expander.Header>
+                    <Label Text="When battery optimization is on, Android may delay or stop background work. Turning it off lets Skye Minder run reliably even when the app isn’t open."
+                           TextColor="{DynamicResource SecondaryTextColor}" />
+                </toolkit:Expander>
+            </VerticalStackLayout>
+
+            <!-- OPTIONAL SECTION -->
+            <VerticalStackLayout Spacing="12">
+                <Label Text="Optional: Prevent Permission Auto‑Revoke"
+                       FontAttributes="Bold"
+                       FontSize="18" />
+
+                <Label Text="Android can automatically remove permissions from apps you haven’t opened in a while. This doesn’t affect reminders today, but it can cause issues months later."
+                       TextColor="{DynamicResource SecondaryTextColor}" />
+
+                <toolkit:Expander>
+                    <toolkit:Expander.Header>
+                        <Label Text="How to turn this off"
+                               TextColor="{DynamicResource AccentColor}" />
+                    </toolkit:Expander.Header>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="1. Open Settings" />
+                        <Label Text="2. Tap Apps" />
+                        <Label Text="3. Choose Skye Minder" />
+                        <Label Text="4. Tap Permissions" />
+                        <Label Text="5. Turn off 'Remove permissions if app is unused'" />
+                    </VerticalStackLayout>
+                </toolkit:Expander>
+            </VerticalStackLayout>
+
+            <!-- Closing reassurance -->
+            <Label Text="Once these steps are complete, reminders will stay reliable even when the app isn’t open."
+                   TextColor="{DynamicResource SecondaryTextColor}"
+                   FontSize="Small" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -32,18 +32,20 @@ namespace SkyeMinder.Pages
                 UserSettings.HighThreshold = high;
         }
         [global::System.Runtime.Versioning.SupportedOSPlatform("android30.0")]
-        private async void OnDebugReminderStatusClicked(object sender, EventArgs e)
+        private async void OnReminderReliabilityCheckClicked(object sender, EventArgs e)
         {
-            // Call your shared logic
-            var batteryOk = ReminderReliability.IsBatteryOptimizationIgnored();
-            var autoRevokeEnabled = ReminderReliability.IsAutoRevokeEnabled();
+            bool needsAttention = ReminderReliability.NeedsAttention();
 
-            // Build a clean message
-            var msg =
-                $"Battery Optimization Ignored: {batteryOk}\n" +
-                $"Auto‑Revoke Enabled: {autoRevokeEnabled}";
-
-            await DisplayAlertAsync("Reminder Debug", msg, "OK");
+            if (needsAttention)
+            {
+                // Navigate to the Guide Page
+                await Navigation.PushAsync(new GuidePage());
+            }
+            else
+            {
+                // Simple, emotionally safe confirmation
+                await DisplayAlertAsync("All Good", "Your reminders are fully reliable.", "OK");
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
         <TimePicker x:Name="timePicker" Margin="0,-20,0,0" FontSize="24"/>
 
         <Button Text="Add Reminder" Padding="20" Margin="0,20,0,0" FontSize="18" Clicked="AddReminder_Clicked" />
-
+        
         <Label Text="Your Reminders:" FontSize="18" Margin="0,20,0,0" />
         <CollectionView x:Name="reminderListView"
                 EmptyView="No reminders yet. Add one above!">
