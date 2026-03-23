@@ -25,5 +25,13 @@ namespace SkyeMinder.Pages
         {
             await ReminderReliability.BatteryOptimizationHelper.OpenBatteryOptimizationSettingsAsync();
         }
+        private void OnWhyExpandedChanged(object sender, CommunityToolkit.Maui.Core.ExpandedChangedEventArgs e)
+        {
+            WhyChevron.Rotation = e.IsExpanded ? 0 : 90;
+        }
+        private void OnAutoRevokeExpandedChanged(object sender, CommunityToolkit.Maui.Core.ExpandedChangedEventArgs e)
+        {
+            AutoRevokeChevron.Rotation = e.IsExpanded ? 0 : 90;
+        }
     }
 }

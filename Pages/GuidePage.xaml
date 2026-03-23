@@ -34,14 +34,26 @@
                        FontSize="Small" />
 
                 <!-- Expandable explanation -->
-                <toolkit:Expander>
+                <toolkit:Expander x:Name="WhyExpander"
+                  ExpandedChanged="OnWhyExpandedChanged">
                     <toolkit:Expander.Header>
-                        <Label Text="Why this matters"
-                               TextColor="{DynamicResource AccentColor}" />
+                        <HorizontalStackLayout Padding="0,10" Spacing="8" VerticalOptions="Center">
+                            <Label Text="Why this matters"
+                               TextColor="{DynamicResource AccentColor}"
+                               FontSize="16"
+                               VerticalOptions="Center" />
+                            <Label x:Name="WhyChevron"
+                               Text="›"
+                               FontSize="20"
+                               Rotation="90"
+                               VerticalOptions="Center" />
+                        </HorizontalStackLayout>
                     </toolkit:Expander.Header>
                     <Label Text="When battery optimization is on, Android may delay or stop background work. Turning it off lets Skye Minder run reliably even when the app isn’t open."
-                           TextColor="{DynamicResource SecondaryTextColor}" />
+                       TextColor="{DynamicResource SecondaryTextColor}"
+                       Margin="0,5,0,10" />
                 </toolkit:Expander>
+                
             </VerticalStackLayout>
 
             <!-- OPTIONAL SECTION -->
@@ -53,13 +65,23 @@
                 <Label Text="Android can automatically remove permissions from apps you haven’t opened in a while. This doesn’t affect reminders today, but it can cause issues months later."
                        TextColor="{DynamicResource SecondaryTextColor}" />
 
-                <toolkit:Expander>
+                <toolkit:Expander x:Name="AutoRevokeExpander"
+                    ExpandedChanged="OnAutoRevokeExpandedChanged">
                     <toolkit:Expander.Header>
-                        <Label Text="How to turn this off"
-                               TextColor="{DynamicResource AccentColor}" />
-                    </toolkit:Expander.Header>
+                        <HorizontalStackLayout Padding="0,10" Spacing="8" VerticalOptions="Center">
+                            <Label Text="How to turn this off"
+               TextColor="{DynamicResource AccentColor}"
+               FontSize="16"
+               VerticalOptions="Center" />
 
-                    <VerticalStackLayout Spacing="6">
+                            <Label x:Name="AutoRevokeChevron"
+               Text="›"
+               FontSize="20"
+               Rotation="90"
+               VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </toolkit:Expander.Header>
+                    <VerticalStackLayout Spacing="6" Margin="0,5,0,10">
                         <Label Text="1. Open Settings" />
                         <Label Text="2. Tap Apps" />
                         <Label Text="3. Choose Skye Minder" />
@@ -67,6 +89,7 @@
                         <Label Text="5. Turn off 'Remove permissions if app is unused'" />
                     </VerticalStackLayout>
                 </toolkit:Expander>
+                
             </VerticalStackLayout>
 
             <!-- Closing reassurance -->
