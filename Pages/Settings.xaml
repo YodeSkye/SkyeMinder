@@ -23,7 +23,7 @@
                    WidthRequest="100"
                    TextChanged="OnHighChanged" />
         </HorizontalStackLayout>
-        <Button Text="Reminder Reliability Check"
-            Clicked="OnReminderReliabilityCheckClicked" />
+        <Button Text="Reminder Reliability Notes"
+            Clicked="OnReminderReliabilityNotesClicked" />
    </VerticalStackLayout>
 </ContentPage>

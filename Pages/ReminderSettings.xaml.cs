@@ -24,8 +24,6 @@ public partial class ReminderSettings : ContentPage
         var reminders = await App.Database.GetReminderTimesAsync();
         reminderListView.ItemsSource = reminders;
     }
-
-    [global::System.Runtime.Versioning.SupportedOSPlatform("android30.0")]
     private async void AddReminder_Clicked(object sender, EventArgs e)
     {
         var selectedTime = timePicker.Time ?? TimeSpan.Zero;
@@ -39,12 +37,8 @@ public partial class ReminderSettings : ContentPage
         var reminders = await App.Database.GetReminderTimesAsync();
         if (reminders.Count == 1) // first reminder ever
         {
-            bool needsAttention = ReminderReliability.NeedsAttention();
-
-            if (needsAttention)
-            {
-                await Navigation.PushAsync(new GuidePage());
-            }
+            // Navigate to the Guide Page
+            await Navigation.PushAsync(new GuidePage());
         }
     }
 

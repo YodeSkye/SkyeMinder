@@ -3,35 +3,27 @@ namespace SkyeMinder.Pages
 {
     public partial class GuidePage : ContentPage
     {
-        [global::System.Runtime.Versioning.SupportedOSPlatform("android30.0")]
         public GuidePage()
         {
             InitializeComponent();
-            UpdateBatteryStatus();
         }
-
+        //private void OnWhyExpandedChanged(object sender, CommunityToolkit.Maui.Core.ExpandedChangedEventArgs e)
+        //{
+        //    WhyChevron.Rotation = e.IsExpanded ? 0 : 90;
+        //}
+        //private void OnAutoRevokeExpandedChanged(object sender, CommunityToolkit.Maui.Core.ExpandedChangedEventArgs e)
+        //{
+        //    AutoRevokeChevron.Rotation = e.IsExpanded ? 0 : 90;
+        //}
         [global::System.Runtime.Versioning.SupportedOSPlatform("android30.0")]
-        private async void UpdateBatteryStatus()
+        private void OnOpenSettingsClicked(object sender, EventArgs e)
         {
-            bool isIgnored = await ReminderReliability.BatteryOptimizationHelper.IsIgnoringBatteryOptimizationsAsync();
-
-            BatteryStatusLabel.Text = isIgnored
-                ? "🟢 All set — battery optimization is off"
-                : "🟡 Still on — tap the button above to fix it";
-        }
-
-        [global::System.Runtime.Versioning.SupportedOSPlatform("android30.0")]
-        private async void OnOpenBatteryOptimizationClicked(object sender, EventArgs e)
-        {
-            await ReminderReliability.BatteryOptimizationHelper.OpenBatteryOptimizationSettingsAsync();
-        }
-        private void OnWhyExpandedChanged(object sender, CommunityToolkit.Maui.Core.ExpandedChangedEventArgs e)
-        {
-            WhyChevron.Rotation = e.IsExpanded ? 0 : 90;
-        }
-        private void OnAutoRevokeExpandedChanged(object sender, CommunityToolkit.Maui.Core.ExpandedChangedEventArgs e)
-        {
-            AutoRevokeChevron.Rotation = e.IsExpanded ? 0 : 90;
+#if ANDROID
+            var context = Android.App.Application.Context;
+            var intent = new Android.Content.Intent(Android.Provider.Settings.ActionIgnoreBatteryOptimizationSettings);
+            intent.SetFlags(Android.Content.ActivityFlags.NewTask);
+            context.StartActivity(intent);
+#endif
         }
     }
 }

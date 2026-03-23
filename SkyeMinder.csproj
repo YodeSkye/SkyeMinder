@@ -17,7 +17,7 @@
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>14</ApplicationVersion>
+		<ApplicationVersion>26</ApplicationVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
@@ -44,6 +44,8 @@
 	  <AndroidSigningStorePass>YfZy8S9azJEW</AndroidSigningStorePass>
 	  <AndroidSigningKeyAlias>skyeminder</AndroidSigningKeyAlias>
 	  <AndroidSigningKeyPass>YfZy8S9azJEW</AndroidSigningKeyPass>
+	  <PublishTrimmed>false</PublishTrimmed>
+      <RunAOTCompilation>false</RunAOTCompilation>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -84,7 +86,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="14.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.50" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.5" />
 		<PackageReference Include="Plugin.LocalNotification" Version="13.0.0" />

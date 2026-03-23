@@ -31,21 +31,10 @@ namespace SkyeMinder.Pages
             if (int.TryParse(e.NewTextValue, out int high))
                 UserSettings.HighThreshold = high;
         }
-        [global::System.Runtime.Versioning.SupportedOSPlatform("android30.0")]
-        private async void OnReminderReliabilityCheckClicked(object sender, EventArgs e)
+        private async void OnReminderReliabilityNotesClicked(object sender, EventArgs e)
         {
-            bool needsAttention = ReminderReliability.NeedsAttention();
-
-            if (needsAttention)
-            {
-                // Navigate to the Guide Page
-                await Navigation.PushAsync(new GuidePage());
-            }
-            else
-            {
-                // Simple, emotionally safe confirmation
-                await DisplayAlertAsync("All Good", "Your reminders are fully reliable.", "OK");
-            }
+            // Navigate to the Guide Page
+            await Navigation.PushAsync(new GuidePage());
         }
     }
 }

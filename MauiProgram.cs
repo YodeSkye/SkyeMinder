@@ -1,5 +1,4 @@
 ﻿
-using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
 namespace SkyeMinder
@@ -14,7 +13,6 @@ namespace SkyeMinder
        
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
