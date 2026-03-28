@@ -133,7 +133,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Screenshots\" />
+	  <Folder Include="Publish\Screenshots\" />
 	</ItemGroup>
 
 </Project>
