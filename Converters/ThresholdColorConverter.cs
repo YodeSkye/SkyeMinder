@@ -9,7 +9,7 @@ namespace SkyeMinder.Converters
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is not int number)
-                return Colors.Black;
+                return GetDefaultColor();
 
             int low = UserSettings.LowThreshold;
             int high = UserSettings.HighThreshold;
@@ -20,7 +20,14 @@ namespace SkyeMinder.Converters
             if (number > high)
                 return Colors.Red;
 
-            return Colors.Black;
+            return GetDefaultColor();
+        }
+
+        private static Color GetDefaultColor()
+        {
+            // Check current theme and fallback to high-contrast default
+            var currentTheme = Application.Current?.RequestedTheme;
+            return currentTheme == AppTheme.Dark ? Colors.White : Colors.Black;
         }
 
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
