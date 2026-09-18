@@ -9,17 +9,27 @@
 
     <CollectionView x:Name="logView"
                     ItemsSource="{Binding entries}"
-                    Margin="20">
+                    Margin="10">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:BloodSugarEntry">
-                <Border Padding="10" Margin="5" BackgroundColor="LightGray">
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Timestamp, StringFormat='{0:MMM d, yyyy h:mm tt}'}" FontSize="12" />
+                <Border Padding="12" 
+                        Margin="0,0,0,8"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                        StrokeShape="RoundRectangle 8">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="{Binding Timestamp, StringFormat='{0:MMM d, yyyy h:mm tt}'}" 
+                               FontSize="12" 
+                               TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+
                         <Label Text="{Binding Value}"
-                               FontSize="18"
+                               FontSize="20"
                                FontAttributes="Bold"
                                TextColor="{Binding Value, Converter={StaticResource ThresholdColorConverter}}" />
-                        <Label Text="{Binding Notes}" FontSize="14" />
+
+                        <Label Text="{Binding Notes}" 
+                               FontSize="14"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
                     </VerticalStackLayout>
                 </Border>
             </DataTemplate>
