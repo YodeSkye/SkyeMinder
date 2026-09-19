@@ -9,8 +9,9 @@ namespace SkyeMinder
         {
             var builder = MauiApp.CreateBuilder();
         
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JGaF5cXGpCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdlWX1ceHVURGVZVEd0VkFWYEs=");
-       
+            //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JGaF5cXGpCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdlWX1ceHVURGVZVEd0VkFWYEs=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjGyl/VkJ+XU9Gf1RLVGpAY1J0WGBYb1xzflBPallYT3RfQFtjQH9ad0VnUXtXdHFTQmtfVQ==");
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>

@@ -28,7 +28,13 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
-    <!-- Brushes -->
+    <!-- Specific Warning Hex Colors for Light/Dark -->
+    <Color x:Key="ThresholdLowLight">#FF8C00</Color>
+    <Color x:Key="ThresholdLowDark">#FFB74D</Color>
+    <Color x:Key="ThresholdHighLight">#D32F2F</Color>
+    <Color x:Key="ThresholdHighDark">#EF5350</Color>
+
+    <!-- Standard Static Brushes -->
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
@@ -43,5 +49,11 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <!-- Theme-Aware Brushes (This IS Valid XAML Syntax) -->
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+    <SolidColorBrush x:Key="ThresholdLowBrush" Color="{AppThemeBinding Light={StaticResource ThresholdLowLight}, Dark={StaticResource ThresholdLowDark}}" />
+    <SolidColorBrush x:Key="ThresholdHighBrush" Color="{AppThemeBinding Light={StaticResource ThresholdHighLight}, Dark={StaticResource ThresholdHighDark}}" />
 
 </ResourceDictionary>
