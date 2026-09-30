@@ -42,7 +42,7 @@
                FontSize="18"
                FontAttributes="Bold"
                HorizontalOptions="Center"
-               Margin="0,20,0,0" />
+               Margin="0,40,0,0" />
 
             <VerticalStackLayout Spacing="4">
 
@@ -70,44 +70,23 @@
 
             </VerticalStackLayout>
         
-            <!-- Changelog -->
-            <Label Text="Change Log"
-           FontSize="18"
-           FontAttributes="Bold"
-           Margin="0,75,0,0" />
-
-            <ScrollView>
-                <VerticalStackLayout>
-                    <Label FontSize="14"
-                   LineBreakMode="WordWrap">
-                        <Label.Text>
-Version 1.0 Build 14 - First Public Release
-Features:
-- Track blood sugar entries
-- Edit, delete, and view history
-- Reminders
-- Import and export CSV
-- Export PDF
-- Settings for high and low thresholds
-- Safe confirmation dialogs
-                        </Label.Text>
-                    </Label>
-                </VerticalStackLayout>
-            </ScrollView>
-        
             <!-- Credits -->
             <Label Text="Credits"
                FontSize="18"
                FontAttributes="Bold"
-               Margin="0,20,0,0" />
+               HorizontalOptions="Center"
+               Margin="0,40,0,0" />
 
             <Label Text="Created by Skye"
+               HorizontalOptions="Center"
                FontSize="14" />
 
             <Label Text="Built with .NET MAUI, SQLite, Syncfusion PDF"
+               HorizontalOptions="Center"
                FontSize="14" />
 
             <Label Text="Licensed under GPL‑3"
+               HorizontalOptions="Center"
                FontSize="14" />
 
             <Label Text="Privacy Policy"
