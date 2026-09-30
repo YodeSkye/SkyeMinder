@@ -21,10 +21,18 @@ namespace SkyeMinder.Pages
             StartDatePicker.DateSelected += async (s, e) => await UpdateEntryCountAsync();
             EndDatePicker.DateSelected += async (s, e) => await UpdateEntryCountAsync();
         }
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            DateRangePanel.IsVisible = false;
+            if (DateRangePicker.SelectedIndex < 0)
+            {
+                DateRangePicker.SelectedIndex = 0; // This triggers OnDateRangeChanged and updates the count automatically
+            }
+            else
+            {
+                DateRangePanel.IsVisible = DateRangePicker.SelectedIndex == 6;
+                await UpdateEntryCountAsync();
+            }
         }
 
         private async void OnDateRangeChanged(object? sender, EventArgs e)
