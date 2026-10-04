@@ -1,10 +1,7 @@
 ﻿
-using Android.App;
-using Android.Util;
-using Android.Content;
-using Android.Widget;
 using Plugin.LocalNotification;
-using Plugin.LocalNotification.AndroidOption;
+using Plugin.LocalNotification.Core.Models;
+using Plugin.LocalNotification.Core.Models.AndroidOption;
 using SkyeMinder.Models;
 
 namespace SkyeMinder.Services
@@ -46,8 +43,7 @@ namespace SkyeMinder.Services
                         },
                         Schedule = new NotificationRequestSchedule
                         {
-                            NotifyTime = triggerTime,
-                            RepeatType = NotificationRepeat.No
+                            NotifyTime = triggerTime
                         }
                     });
 
@@ -70,7 +66,6 @@ namespace SkyeMinder.Services
                             RepeatType = NotificationRepeat.Daily
                         }
                     });
-                    //Services.ToastHelper.ShowToast($"Reminder {reminder.Id} Scheduled");
                 }
                 Services.ToastHelper.ShowToast("Reminders Scheduled");
             });

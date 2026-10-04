@@ -5,6 +5,7 @@ using Android.OS;
 using AndroidX.Core.App;
 using AndroidX.Core.Content;
 using Microsoft.Maui.ApplicationModel;
+using Plugin.LocalNotification;
 using SkyeMinder.Models;
 using System.Collections.ObjectModel;
 
@@ -33,6 +34,12 @@ namespace SkyeMinder
         {
             base.OnAppearing();
 
+            // Check if notification permissions are granted
+            if (await LocalNotificationCenter.Current.AreNotificationsEnabled() == false)
+            {
+                await LocalNotificationCenter.Current.RequestNotificationPermission();
+            }
+
             LoadEntries();
 
             // Focus the entry so the keyboard pops up
@@ -42,14 +49,35 @@ namespace SkyeMinder
 
 #if ANDROID
 #pragma warning disable CA1416
+            var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+
+            // 1. Check Standard Notification Permission (Android 13+ / API 33+)
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Tiramisu)
             {
-                var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
-                var permissionCheck = AndroidX.Core.Content.ContextCompat.CheckSelfPermission(activity, Android.Manifest.Permission.PostNotifications);
+                var permissionCheck = AndroidX.Core.Content.ContextCompat.CheckSelfPermission(
+                    activity,
+                    Android.Manifest.Permission.PostNotifications);
 
                 if (permissionCheck != Android.Content.PM.Permission.Granted)
                 {
-                    AndroidX.Core.App.ActivityCompat.RequestPermissions(activity, [Android.Manifest.Permission.PostNotifications], 0);
+                    AndroidX.Core.App.ActivityCompat.RequestPermissions(
+                        activity,
+                        [Android.Manifest.Permission.PostNotifications],
+                        0);
+                }
+            }
+
+            // 2. Check Exact Alarm Special Access (Android 12+ / API 31+)
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.S)
+            {
+                // If the device cannot schedule exact alarms, open the exact settings page directly!
+                if (activity?.GetSystemService(Android.Content.Context.AlarmService) is Android.App.AlarmManager alarmManager && !alarmManager.CanScheduleExactAlarms())
+                {
+                    var intent = new Android.Content.Intent(
+                        Android.Provider.Settings.ActionRequestScheduleExactAlarm,
+                        Android.Net.Uri.Parse($"package:{activity.PackageName}"));
+
+                    activity.StartActivity(intent);
                 }
             }
 #pragma warning restore CA1416
