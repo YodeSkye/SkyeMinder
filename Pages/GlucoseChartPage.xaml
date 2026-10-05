@@ -4,6 +4,7 @@
              xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
              xmlns:vm="clr-namespace:SkyeMinder.Models"
              x:Class="SkyeMinder.Pages.GlucoseChartPage"
+             x:DataType="vm:GlucoseChartViewModel"
              Title="Blood Sugar Trends">
 
     <ContentPage.BindingContext>

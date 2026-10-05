@@ -1,7 +1,8 @@
 ﻿
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
-namespace SkyeMinder.Models // or SkyeMinder.ViewModels
+namespace SkyeMinder.Models
 {
     public enum ChartTimeRange
     {
@@ -14,6 +15,18 @@ namespace SkyeMinder.Models // or SkyeMinder.ViewModels
 
     public class GlucoseChartViewModel : BindableObject
     {
+        public ICommand ChangeRangeCommand { get; }
+
+        public GlucoseChartViewModel()
+        {
+            // Initialize command to handle button clicks or segmented control selections
+            ChangeRangeCommand = new Command<ChartTimeRange>(SetTimeRange);
+            ChangeRangeCommandEx = new Command<string>(SetTimeRangeFromString);
+        }
+
+        // Secondary command to support passing strings from XAML parameters if needed
+        public ICommand ChangeRangeCommandEx { get; }
+
         private ChartTimeRange _selectedRange = ChartTimeRange.Month;
         public ChartTimeRange SelectedRange
         {
@@ -50,6 +63,19 @@ namespace SkyeMinder.Models // or SkyeMinder.ViewModels
         public double AverageValue => BloodSugarEntries.Any() ? Math.Round(BloodSugarEntries.Average(x => x.Value), 1) : 0;
         public int HighestValue => BloodSugarEntries.Any() ? BloodSugarEntries.Max(x => x.Value) : 0;
         public int LowestValue => BloodSugarEntries.Any() ? BloodSugarEntries.Min(x => x.Value) : 0;
+
+        private void SetTimeRange(ChartTimeRange range)
+        {
+            SelectedRange = range;
+        }
+
+        private void SetTimeRangeFromString(string rangeString)
+        {
+            if (Enum.TryParse<ChartTimeRange>(rangeString, true, out var range))
+            {
+                SelectedRange = range;
+            }
+        }
 
         private void RecalculateChartBounds()
         {
