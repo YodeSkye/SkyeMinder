@@ -116,7 +116,8 @@
                             <chart:HorizontalLineAnnotation.LabelStyle>
                                 <chart:ChartAnnotationLabelStyle TextColor="{Binding HighThresholdColor}" 
                                             FontSize="10" 
-                                            HorizontalTextAlignment="Start" />
+                                            HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Start"/>
                             </chart:HorizontalLineAnnotation.LabelStyle>
                         </chart:HorizontalLineAnnotation>
 
@@ -128,7 +129,8 @@
                             <chart:HorizontalLineAnnotation.LabelStyle>
                                 <chart:ChartAnnotationLabelStyle TextColor="{Binding LowThresholdColor}" 
                                             FontSize="10" 
-                                            HorizontalTextAlignment="Start" />
+                                            HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Start"/>
                             </chart:HorizontalLineAnnotation.LabelStyle>
                         </chart:HorizontalLineAnnotation>
 
