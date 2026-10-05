@@ -11,6 +11,7 @@ namespace SkyeMinder
             Routing.RegisterRoute("MainPage", typeof(MainPage));
             Routing.RegisterRoute(nameof(Settings), typeof(Settings));
             Routing.RegisterRoute(nameof(About), typeof(About));
+            Routing.RegisterRoute(nameof(GlucoseChartPage), typeof(GlucoseChartPage));
         }
     }
 }

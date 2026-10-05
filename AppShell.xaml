@@ -27,6 +27,10 @@
         <ShellContent ContentTemplate="{DataTemplate pages:Log}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Trends" Icon="trends.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:GlucoseChartPage}" />
+    </FlyoutItem>
+
     <FlyoutItem Title="Import" Icon="import16.png">
         <ShellContent ContentTemplate="{DataTemplate pages:Import}" />
     </FlyoutItem>

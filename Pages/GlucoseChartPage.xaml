@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:vm="clr-namespace:SkyeMinder.Models"
+             x:Class="SkyeMinder.Pages.GlucoseChartPage"
+             Title="Blood Sugar Trends">
+
+    <ContentPage.BindingContext>
+        <vm:GlucoseChartViewModel x:Name="ViewModel" />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="20">
+
+            <!-- Summary Cards: Average, Highest, Lowest -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+
+                <!-- Average Card -->
+                <Border Grid.Column="0" Padding="12" StrokeShape="RoundRectangle 10" BackgroundColor="#1E88E5" StrokeThickness="0">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="2">
+                        <Label Text="AVERAGE" FontSize="11" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="{Binding AverageValue, StringFormat='{0:F0}'}" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                        <Label Text="mg/dL" FontSize="9" TextColor="#E3F2FD" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Highest Card -->
+                <Border Grid.Column="1" Padding="12" StrokeShape="RoundRectangle 10" BackgroundColor="#E53935" StrokeThickness="0">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="2">
+                        <Label Text="HIGHEST" FontSize="11" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="{Binding HighestValue}" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                        <Label Text="mg/dL" FontSize="9" TextColor="#FFEBEE" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Lowest Card -->
+                <Border Grid.Column="2" Padding="12" StrokeShape="RoundRectangle 10" BackgroundColor="#43A047" StrokeThickness="0">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="2">
+                        <Label Text="LOWEST" FontSize="11" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="{Binding LowestValue}" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                        <Label Text="mg/dL" FontSize="9" TextColor="#E8F5E9" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <!-- Time Range Filter Buttons -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                <Button Text="1W" 
+                        Command="{Binding ChangeRangeCommand}" 
+                        CommandParameter="{x:Static vm:ChartTimeRange.Week}"
+                        HeightRequest="36" Padding="12,0" CornerRadius="18" FontSize="12" />
+
+                <Button Text="1M" 
+                        Command="{Binding ChangeRangeCommand}" 
+                        CommandParameter="{x:Static vm:ChartTimeRange.Month}"
+                        HeightRequest="36" Padding="12,0" CornerRadius="18" FontSize="12" />
+
+                <Button Text="3M" 
+                        Command="{Binding ChangeRangeCommand}" 
+                        CommandParameter="{x:Static vm:ChartTimeRange.ThreeMonths}"
+                        HeightRequest="36" Padding="12,0" CornerRadius="18" FontSize="12" />
+
+                <Button Text="6M" 
+                        Command="{Binding ChangeRangeCommand}" 
+                        CommandParameter="{x:Static vm:ChartTimeRange.SixMonths}"
+                        HeightRequest="36" Padding="12,0" CornerRadius="18" FontSize="12" />
+
+                <Button Text="All" 
+                        Command="{Binding ChangeRangeCommand}" 
+                        CommandParameter="{x:Static vm:ChartTimeRange.All}"
+                        HeightRequest="36" Padding="12,0" CornerRadius="18" FontSize="12" />
+            </HorizontalStackLayout>
+
+            <!-- Syncfusion Cartesian Chart -->
+            <Border Stroke="{AppThemeBinding Light=#D3D3D3, Dark=#444444}"
+                StrokeThickness="1"
+                HorizontalOptions="Fill"
+                Margin="10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0" />
+                </Border.StrokeShape>
+                
+                    <chart:SfCartesianChart HeightRequest="350" Title="Glucose History">
+
+                    <!-- X-Axis: DateTimeAxis with LabelStyle -->
+                    <chart:SfCartesianChart.XAxes>
+                        <chart:DateTimeAxis IntervalType="Days" Interval="5">
+                            <chart:DateTimeAxis.LabelStyle>
+                                <chart:ChartAxisLabelStyle LabelFormat="MMM dd" />
+                            </chart:DateTimeAxis.LabelStyle>
+                        </chart:DateTimeAxis>
+                    </chart:SfCartesianChart.XAxes>
+
+                    <!-- Y-Axis with Dynamic Bounds -->
+                    <chart:SfCartesianChart.YAxes>
+                        <chart:NumericalAxis Minimum="{Binding DynamicMinY}" 
+                             Maximum="{Binding DynamicMaxY}">
+                            <chart:NumericalAxis.Title>
+                                <chart:ChartAxisTitle Text="mg/dL" />
+                            </chart:NumericalAxis.Title>
+                        </chart:NumericalAxis>
+                    </chart:SfCartesianChart.YAxes>
+
+                    <!-- Data Series -->
+                    <chart:LineSeries ItemsSource="{Binding BloodSugarEntries}"
+                                      XBindingPath="Timestamp"
+                                      YBindingPath="Value"
+                                      ShowDataLabels="True"
+                                      StrokeWidth="3">
+                        <chart:LineSeries.DataLabelSettings>
+                            <chart:CartesianDataLabelSettings UseSeriesPalette="False" 
+                                                              LabelStyle="{chart:ChartDataLabelStyle TextColor=White, FontSize=11}" />
+                        </chart:LineSeries.DataLabelSettings>
+                    </chart:LineSeries>
+
+                </chart:SfCartesianChart>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
