@@ -5,18 +5,24 @@ namespace SkyeMinder.Pages;
 
 public partial class GlucoseChartPage : ContentPage
 {
-    private readonly GlucoseChartViewModel _viewModel;
+    private GlucoseChartViewModel? ViewModel => BindingContext as GlucoseChartViewModel;
 
     public GlucoseChartPage()
     {
         InitializeComponent();
-        _viewModel = new GlucoseChartViewModel();
-        BindingContext = _viewModel;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
-        await _viewModel.LoadEntriesAsync();
+
+        if (ViewModel != null)
+        {
+            // Update low/high threshold line colors or values if settings changed
+            ViewModel.RefreshThresholds();
+
+            // Load database entries asynchronously for the selected range
+            _ = ViewModel.LoadEntriesAsync();
+        }
     }
 }

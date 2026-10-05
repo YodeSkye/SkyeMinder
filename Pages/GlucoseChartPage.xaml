@@ -8,7 +8,7 @@
              Title="Blood Sugar Trends">
 
     <ContentPage.BindingContext>
-        <vm:GlucoseChartViewModel x:Name="ViewModel" />
+        <vm:GlucoseChartViewModel />
     </ContentPage.BindingContext>
 
     <ScrollView>
@@ -76,33 +76,63 @@
 
             <!-- Syncfusion Cartesian Chart -->
             <Border Stroke="{AppThemeBinding Light=#D3D3D3, Dark=#444444}"
-                StrokeThickness="1"
-                HorizontalOptions="Fill"
-                Margin="10">
+                    StrokeThickness="1"
+                    HorizontalOptions="Fill"
+                    Margin="10">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="0" />
                 </Border.StrokeShape>
-                
-                    <chart:SfCartesianChart HeightRequest="350" Title="Glucose History">
 
-                    <!-- X-Axis: DateTimeAxis with LabelStyle -->
+                <chart:SfCartesianChart HeightRequest="350" Title="Glucose History">
+
+                    <!-- X-Axis -->
                     <chart:SfCartesianChart.XAxes>
-                        <chart:DateTimeAxis IntervalType="Days" Interval="5">
+                        <chart:DateTimeAxis x:Name="PrimaryXAxis">
                             <chart:DateTimeAxis.LabelStyle>
                                 <chart:ChartAxisLabelStyle LabelFormat="MMM dd" />
                             </chart:DateTimeAxis.LabelStyle>
                         </chart:DateTimeAxis>
                     </chart:SfCartesianChart.XAxes>
 
-                    <!-- Y-Axis with Dynamic Bounds -->
+                    <!-- Y-Axis -->
                     <chart:SfCartesianChart.YAxes>
-                        <chart:NumericalAxis Minimum="{Binding DynamicMinY}" 
-                             Maximum="{Binding DynamicMaxY}">
+                        <chart:NumericalAxis x:Name="PrimaryYAxis" 
+                                             Minimum="{Binding DynamicMinY}" 
+                                             Maximum="{Binding DynamicMaxY}">
                             <chart:NumericalAxis.Title>
                                 <chart:ChartAxisTitle Text="mg/dL" />
                             </chart:NumericalAxis.Title>
                         </chart:NumericalAxis>
                     </chart:SfCartesianChart.YAxes>
+
+                    <!-- Annotations for Low & High Threshold Lines -->
+                    <chart:SfCartesianChart.Annotations>
+
+                        <!-- High Threshold Line -->
+                        <chart:HorizontalLineAnnotation Y1="{Binding HighThreshold}"
+                                    Stroke="{Binding HighThresholdColor}"
+                                    StrokeWidth="1"
+                                    Text="High">
+                            <chart:HorizontalLineAnnotation.LabelStyle>
+                                <chart:ChartAnnotationLabelStyle TextColor="{Binding HighThresholdColor}" 
+                                            FontSize="10" 
+                                            HorizontalTextAlignment="Start" />
+                            </chart:HorizontalLineAnnotation.LabelStyle>
+                        </chart:HorizontalLineAnnotation>
+
+                        <!-- Low Threshold Line -->
+                        <chart:HorizontalLineAnnotation Y1="{Binding LowThreshold}"
+                                    Stroke="{Binding LowThresholdColor}"
+                                    StrokeWidth="1"
+                                    Text="Low">
+                            <chart:HorizontalLineAnnotation.LabelStyle>
+                                <chart:ChartAnnotationLabelStyle TextColor="{Binding LowThresholdColor}" 
+                                            FontSize="10" 
+                                            HorizontalTextAlignment="Start" />
+                            </chart:HorizontalLineAnnotation.LabelStyle>
+                        </chart:HorizontalLineAnnotation>
+
+                    </chart:SfCartesianChart.Annotations>
 
                     <!-- Data Series -->
                     <chart:LineSeries ItemsSource="{Binding BloodSugarEntries}"
@@ -111,8 +141,11 @@
                                       ShowDataLabels="True"
                                       StrokeWidth="3">
                         <chart:LineSeries.DataLabelSettings>
-                            <chart:CartesianDataLabelSettings UseSeriesPalette="False" 
-                                                              LabelStyle="{chart:ChartDataLabelStyle TextColor=White, FontSize=11}" />
+                            <chart:CartesianDataLabelSettings UseSeriesPalette="False">
+                                <chart:CartesianDataLabelSettings.LabelStyle>
+                                    <chart:ChartDataLabelStyle TextColor="{AppThemeBinding Light=Black, Dark=White}" FontSize="11" />
+                                </chart:CartesianDataLabelSettings.LabelStyle>
+                            </chart:CartesianDataLabelSettings>
                         </chart:LineSeries.DataLabelSettings>
                     </chart:LineSeries>
 
@@ -120,5 +153,4 @@
             </Border>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
